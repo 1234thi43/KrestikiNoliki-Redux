@@ -1,9 +1,9 @@
-import { useStore } from "../../hooks/useStore";
-import { store } from "../../store";
 import styles from "./Information.module.css";
+import { useSelector } from "react-redux";
+import { selectInformation } from "../../selectors";
 
 export const InformationLayout = () => {
-	const { information } = useStore(store);
+	const information = useSelector(selectInformation);
 
 	return (
 		<div className={styles.information}>

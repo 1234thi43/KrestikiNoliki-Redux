@@ -1,11 +1,13 @@
 import styles from "./Field.module.css";
-import { useStore } from "../../hooks/useStore";
-import { store } from "../../store";
+import { useSelector } from "react-redux";
 import { STATUS } from "../../constants/status";
 import { useGameActions } from "../../hooks/useGameActions";
+import { selectGameStatus, selectSquares } from "../../selectors";
 
 export const FieldLayout = () => {
-	const { squares = [], gameStatus } = useStore(store);
+	const squares = useSelector(selectSquares);
+	const gameStatus = useSelector(selectGameStatus);
+
 	const { onCellClick, onRestartGame } = useGameActions();
 
 	return (

@@ -1,25 +1,27 @@
-import { store } from "../store";
 import { STATUS } from "../constants/status";
+import { useSelector } from "react-redux";
+import { selectSquares, selectGameStatus } from "../selectors";
+import { useDispatch } from "react-redux";
 
 export const useGameActions = () => {
-	const onCellClick = (index) => {
-		const currentState = store.getState();
+	const dispatch = useDispatch();
 
-		if (
-			currentState.squares[index] ||
-			currentState.gameStatus !== STATUS.TURN
-		) {
+	const squares = useSelector(selectSquares);
+	const gameStatus = useSelector(selectGameStatus);
+
+	const onCellClick = (index) => {
+		if (squares[index] || gameStatus !== STATUS.TURN) {
 			return;
 		}
 
-		store.dispatch({
+		dispatch({
 			type: "SET_FIELD",
 			payload: { index },
 		});
 	};
 
 	const onRestartGame = () => {
-		store.dispatch({ type: "RESTART_GAME" });
+		dispatch({ type: "RESTART_GAME" });
 	};
 
 	return { onCellClick, onRestartGame };
