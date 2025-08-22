@@ -1,7 +1,4 @@
 import { AppLayout } from "./App-layout";
 
-const App = () => {
-	return <AppLayout />;
-};
-
+const App = AppLayout;
 export default App;

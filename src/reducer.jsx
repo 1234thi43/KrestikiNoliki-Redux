@@ -22,7 +22,6 @@ export const appReducer = (state = initialState, { type, payload }) => {
 
       newSquares[payload.index] = PLAYER_SIGN[state.currentPlayer];
 
-      // Проверяем результат на ОБНОВЛЕННОМ поле
       const { winner, gameStatus } = checkGameResult(newSquares);
 
       return {
